@@ -1,0 +1,150 @@
+{% extends 'includes/master_page.html' %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+{% block content %}
+<style>
+    .about-container {
+        font-family: 'Georgia', serif;
+        color: #2c2c2c;
+        line-height: 1.8;
+        background-color: #fdfdfd;
+        padding: 20px;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #e3e3e3, #ffffff);
+        border-bottom: 3px solid #d4af37;
+    }
+
+    .hero-section h1 {
+        font-size: 3em;
+        color: #d4af37;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-section p {
+        font-size: 1.4em;
+        margin-top: 15px;
+        max-width: 800px;
+        margin: 15px auto;
+    }
+
+    .section {
+        padding: 60px 20px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        background-color: #ffffff;
+    }
+
+    .section h2 {
+        font-size: 2.2em;
+        color: #333;
+        border-bottom: 2px solid #d4af37;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .section p, .section ul {
+        font-size: 1.1em;
+        margin: 15px 0;
+    }
+
+    .section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .section ul li {
+        margin-bottom: 12px;
+        padding-left: 25px;
+        position: relative;
+    }
+
+    .section ul li:before {
+        content: "•";
+        color: #d4af37;
+        position: absolute;
+        left: 0;
+        font-size: 1.4em;
+    }
+
+    .footer-note {
+        font-size: 1.2em;
+        text-align: center;
+        color: #555;
+        padding: 30px 20px;
+        border-top: 3px solid #d4af37;
+        margin-top: 50px;
+    }
+
+    /* Additional Features Styling */
+    .team-section ul li:hover {
+        color: #d4af37;
+        transition: color 0.3s ease;
+    }
+</style>
+
+<div class="about-container">
+    <div class="hero-section">
+        <h1>About Us</h1>
+        <p>Hotel & Restaurant "Vistula" is a charming establishment located in the heart
+            of Warsaw, Poland, where modern elegance meets timeless Polish tradition.
+            Nestled near the banks of the picturesque Wisła River, this destination
+            offers breathtaking views, exceptional comfort, and a taste of authentic
+            Polish hospitality.</p>
+    </div>
+
+    <div class="section">
+        <h2>Our Mission</h2>
+        <p>
+            At Vistula, our mission is to provide the best solutions for our customers.
+            We aim to inspire trust, offer unparalleled quality, and ensure that every interaction with our services leaves a lasting positive impact.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Hotel Highlights</h2>
+        <p>The hotel features contemporary yet cozy accommodations designed to
+            cater to both leisure and business travelers. Each room is thoughtfully
+            appointed with modern amenities, including high-speed Wi-Fi, plush bedding,
+            and flat-screen TVs. Select suites boast balconies with panoramic views of
+            the Vistula River and Warsaw's skyline.</p>
+        <ul>
+            <li>Location: Close to Warsaw's historic Old Town and Royal Castle.</li>
+            <li>Amenities: Spa, sauna, fitness center, and state-of-the-art conference rooms.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Restaurant Experience</h2>
+        <p>
+            The "Vistula" restaurant specializes in traditional Polish dishes reimagined with a modern twist. Ingredients are locally sourced to ensure the freshest flavors.
+        </p>
+        <ul>
+            <li>Atmosphere: Stylish interiors and warm lighting for any occasion.</li>
+            <li>Special Events: Themed culinary evenings with live music.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Additional Features</h2>
+        <ul>
+            <li>Cultural Integration: Collaborations with local artists to showcase their work.</li>
+            <li>Personalized Service: Attentive staff ensures every guest feels welcomed.</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        Whether you're visiting Warsaw for a weekend getaway, a business trip,
+        or a special celebration, Hotel & Restaurant "Vistula" promises an
+        unforgettable experience blending modern comfort with Polish culture.
+    </div>
+</div>
+{% endblock %}

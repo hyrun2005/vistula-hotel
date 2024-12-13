@@ -1,0 +1,130 @@
+{% extends 'includes/master_page_res.html' %}
+
+{% block title %}
+    Order Summary
+{% endblock %}
+
+{% block content %}
+<style>
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+.order-summary-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 15px 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li span {
+    font-size: 18px;
+    color: #555;
+}
+
+h3 {
+    text-align: right;
+    margin-top: 20px;
+    color: #555;
+    font-weight: normal;
+}
+
+.empty-basket {
+    text-align: center;
+    color: #777;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #bb162f;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #1e7e34;
+}
+
+
+.basket-item-remove {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.basket-item-remove:hover {
+    background-color: #c82333;
+}
+
+</style>
+    <h2>Order Summary</h2>
+<div class="order-summary-container">
+
+    {% if basket %}
+        <ul>
+            {% for item in basket %}
+                <li>
+                    <span>{{ item.dish.name }}</span>
+                    <span>${{ item.dish.price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <h3>Total: ${{ total_cost }}</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <a href="{% url 'confirm_order' %}">Klicc</a>
+            <button type="submit">Confirm Order</button>
+        </form>
+    {% else %}
+        <p class="empty-basket">Your basket is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+

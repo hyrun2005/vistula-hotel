@@ -1,0 +1,231 @@
+{% extends 'includes/master_page_res.html' %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block content %}
+<style>
+/* Reset Default Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Sticky Category Filter Bar */
+.category-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: 20px auto; /* This margin controls the spacing from the surrounding content */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Sticky positioning */
+    top: 20px; /* Creates space between the top of the viewport and the filter */
+    z-index: 10; /* Ensure it's on top of other content */
+}
+
+
+.category-filter .categories {
+    display: flex;
+    gap: 15px;
+}
+
+.category-filter a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.category-filter a:hover,
+.category-filter a.active {
+    color: #f7c08a;
+    border-color: #f7c08a;
+}
+
+.category-filter .order-button {
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.category-filter .order-button:hover {
+    background-color: #f7c08a;
+    color: #fff;
+}
+
+/* Category Section */
+.category {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category h2 {
+    font-size: 28px;
+    color: #f7c08a;
+    border-bottom: 2px solid #f7c08a;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Dishes Section */
+.dishes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+}
+
+.dish {
+    width: 300px;
+    background: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+}
+
+.dish h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.dish p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.dish img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dish button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #f7c08a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dish button:hover {
+    background-color: #e0a76b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .category-filter {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .categories {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .order-button {
+        align-self: center;
+    }
+}
+</style>
+<!-- Category Filter -->
+<div class="category-filter">
+    <div class="categories">
+        <a href="#all" class="active" onclick="highlightCategory(this)">All</a>
+        {% for category in categories %}
+            <a href="#category-{{ category.id }}" onclick="highlightCategory(this)">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+    <div class="actions">
+        <!-- Add navigation buttons -->
+        <button class="order-button" onclick="location.href='{% url 'basket' %}'">Basket</button>
+        <button class="order-button" onclick="location.href='{% url 'order' %}'">Order</button>
+    </div>
+</div>
+
+<!-- Dishes -->
+<div id="all">
+    {% for category in categories %}
+        <div class="category" id="category-{{ category.id }}">
+            <h2>{{ category.name }}</h2>
+            <div class="dishes">
+                {% for dish in category.dishes.all %}
+                    <div class="dish">
+                        <h3>{{ dish.name }}</h3>
+                        <p>{{ dish.description }}</p>
+                        <p>${{ dish.price }}</p>
+                        <div class="photos">
+                            {% for photo in dish.photos.all %}
+                                <img src="..{{ photo.photo.url }}" alt="{{ dish.name }}">
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'add_to_basket' dish.id %}">
+                            <button>Add to Basket</button>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+// Simulate a basket as an array
+let basket = [];
+
+function addToBasket(dishId, dishName, dishPrice) {
+    basket.push({ id: dishId, name: dishName, price: dishPrice });
+    alert(`${dishName} added to basket!`);
+}
+
+function goToBasket() {
+    // Redirect to the basket page
+    window.location.href = '/basket/';
+}
+
+function finalizeOrder() {
+    if (basket.length === 0) {
+        alert('Your basket is empty!');
+        return;
+    }
+
+    // Redirect to order page with basket data
+    window.location.href = '/order/';
+}
+</script>
+{% endblock %}

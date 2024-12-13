@@ -1,0 +1,48 @@
+{%extends 'includes/master_page.html' %}
+
+{% block title %}
+Hotel-Restaurant VISTULA | Welcome
+{%endblock%}
+
+{% block content %}
+
+
+    <div id="showcase">
+        <div class="container">
+            <div class="showcase-content">
+
+                <h1><span class="text-primary">Miłego</span> pobytu</h1>
+                <p class="lead">Witamy w Hotelu Vistula! Zapraszamy do wyjątkowego miejsca, gdzie komfort, elegancja i doskonała obsługa łączą się w harmonijną całość. </p>
+                <a class="btn" href="{% url 'aboutUs' %}">About Our Hotel</a>
+            </div>
+        </div>
+    </div>
+    <section id="home-info" class="bg-dark">
+        <div class="info-img"></div>
+        <div class="info-content">
+            <h2><span class="text-primary">The History</span> of Our Hotel</h2>
+            <p>The Vistula Hotel boasts 20 stylishly designed rooms that guarantee comfort and tranquility. Each room is equipped with modern amenities, including a flat-screen TV, high-speed internet access, and a minibar. Our river-view suites are a perfect choice for couples looking for a romantic retreat. </p>
+            <a href="#" class="btn btn-light">Read More</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="box bg-light">
+            <i class="fas fa-hotel fa-3x"></i>
+            <h3>Great Location</h3>
+            <p>Hotel Vistula znajduje się w malowniczej lokalizacji</p>
+        </div>
+        <div class="box bg-primary">
+            <i class="fas fa-utensils fa-3x"></i>
+            <h3>Meals On The House</h3>
+            <p>Wykwintne dania kuchni polskiej i międzynarodowej</p>
+        </div>
+        <div class="box bg-light">
+            <i class="fas fa-dumbbell fa-3x"></i>
+            <h3>Fitness Room</h3>
+            <p>Nowoczesna siłownia dostępna dla gości hotelowych</p>
+        </div>
+    </section>
+
+    <div class="clr"></div>
+{%endblock%}

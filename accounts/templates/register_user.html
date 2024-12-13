@@ -1,0 +1,126 @@
+{% extends 'master_page.html' %}
+{% block title %}
+Registration
+{% endblock %}
+{% load static %}
+{% block content %}
+<style>
+/* Style for the registration container */
+.reg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* Style for the title and header section */
+.lefSide_form h1 {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style for the form itself */
+.reg_form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+label {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Style for the login link below the form */
+.user_log {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.user_log a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.user_log a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<div class="reg">
+    <div class="lefSide_form">
+        <h1>Registration:</h1>
+    </div>
+    <div class="reg_form">
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <label for="id_firstname">First Name:</label>
+            {{ form.firstname }}
+
+            <label for="id_lastname">Last Name:</label>
+            {{ form.lastname }}
+
+            <label for="id_phone_number">Phone Number:</label>
+            {{ form.phone_number }}
+
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+
+            <label for="id_address">Address:</label>
+            {{ form.address }}
+
+            <label for="id_password1">Password:</label>
+            {{ form.password1 }}
+
+            <label for="id_password2">Confirm Password:</label>
+            {{ form.password2 }}
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="user_log"> Already have an account? <a href="{% url 'login_in' %}">Log in</a></div>
+    </div>
+</div>
+
+{% endblock %}

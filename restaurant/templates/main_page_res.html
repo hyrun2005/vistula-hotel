@@ -1,0 +1,46 @@
+{% extends 'includes/master_page_res.html' %}
+
+{% block title %}
+Restaurant VISTULA | Welcome
+{% endblock %}
+
+{% block content %}
+<div id="showcase">
+    <div class="container">
+        <div class="showcase-content">
+            <h1><span class="text-primary">Welcome to Vistula</span> Restaurant</h1>
+            <p class="lead">Enjoy the finest dining experience with us. From locally sourced ingredients to world-class chefs, we bring you an unforgettable culinary journey.</p>
+            <a class="btn" href="{% url 'menu' %}">View Our Menu</a>
+        </div>
+    </div>
+</div>
+
+<section id="home-info" class="bg-dark">
+    <div class="info-img"></div>
+    <div class="info-content">
+        <h2><span class="text-primary">Our Story</span></h2>
+        <p>Since opening our doors, Vistula Restaurant has been dedicated to serving exceptional meals in a warm and inviting atmosphere. Explore our passion for great food and hospitality.</p>
+        <a href="about.html" class="btn btn-light">Read More</a>
+    </div>
+</section>
+
+<section id="features">
+    <div class="box bg-light">
+        <i class="fas fa-utensils fa-3x"></i>
+        <h3>Exquisite Cuisine</h3>
+        <p>From traditional dishes to modern gastronomy, our menu has something for every palate.</p>
+    </div>
+    <div class="box bg-primary">
+        <i class="fas fa-wine-glass-alt fa-3x"></i>
+        <h3>Fine Beverages</h3>
+        <p>Pair your meal with the perfect drink from our curated selection of wines and cocktails.</p>
+    </div>
+    <div class="box bg-light">
+        <i class="fas fa-star fa-3x"></i>
+        <h3>Exceptional Service</h3>
+        <p>Our dedicated team ensures that every visit is a delightful experience.</p>
+    </div>
+</section>
+
+<div class="clr"></div>
+{% endblock %}

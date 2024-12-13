@@ -1,0 +1,161 @@
+{% extends 'includes/master_page_res.html' %}
+
+{% block title %}
+    Basket
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .basket-container {
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 25px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .basket-header {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .basket-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .basket-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.1rem;
+    }
+
+    .item-name {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .item-price {
+        color: #888;
+    }
+
+    .delete-form {
+        margin: 0;
+    }
+
+    .delete-button {
+        background: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.3s;
+    }
+
+    .delete-button:hover {
+        background: #e63939;
+    }
+
+    .basket-total {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 15px;
+        color: #333;
+    }
+
+    .basket-actions {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .proceed-button {
+        background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .proceed-button:hover {
+         background-color: #218838;
+    transform: scale(1.05);
+    }
+
+    .empty-basket {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #888;
+        padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .basket-container {
+            padding: 20px;
+        }
+
+        .basket-item {
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .item-name, .item-price {
+            flex: 1 0 100%;
+        }
+
+        .delete-button {
+            margin-top: 10px;
+        }
+
+        .basket-total {
+            text-align: left;
+        }
+    }
+</style>
+
+<h2 class="basket-header">Your Basket</h2>
+<div class="basket-container">
+    {% if basket %}
+        <ul class="basket-list">
+            {% for item in basket %}
+                <li class="basket-item">
+                    <span class="item-name">{{ item.dish.name }}</span>
+                    <span class="item-price">${{ item.dish.price }} x {{ item.quantity }}</span>
+                    <form method="post" action="{% url 'delete_from_basket' item.dish.id %}" class="delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">&times;</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="basket-total">Total: ${{ total_price }}</p>
+        <a href="{% url 'order' %}" class="basket-actions">
+            <button class="proceed-button">Proceed to Order</button>
+        </a>
+    {% else %}
+        <p class="empty-basket">Your basket is empty.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
