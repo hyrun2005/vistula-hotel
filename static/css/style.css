@@ -103,7 +103,7 @@ p {
     overflow: auto;
 }
 
-#navbar a {
+#navbar a:not(.dropdown-content a) {
     color: #fff;
 }
 
@@ -121,10 +121,64 @@ p {
     float: left;
 }
 
-#navbar ul li a {
+/* Style only direct links in the navbar */
+#navbar > ul > li > a {
     display: block;
     padding: 20px;
     text-align: center;
+    color: #fff; /* Main navbar link color */
+    text-decoration: none;
+}
+
+
+/* Style Dropdown Button */
+.dropdown_button {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    display: block;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    background-color: #333;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropdown_button:hover {
+    background-color: #444;
+    color: #f7c08a;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    width: 80px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.dropdown-content button {
+    display: block;
+    padding: 10px;
+    color: #f7c08a;
+    background-color: #333;
+    text-align: center;
+    width: 80px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content button:hover {
+    background-color: #444;
+    color: #f7c08a;
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 #navbar ul li a:hover,
@@ -475,7 +529,7 @@ font-size: 60px;
 
 #testimonials {
     height: 100%;
-    background: url('../img/test-bg.jpg') no-repeat center center/cover;
+    background: url('../img/registration_login/bckgrnd_rgstr.jpeg') no-repeat center center/cover;
     padding-top: 40px;
 }
 #testimonials h2 {

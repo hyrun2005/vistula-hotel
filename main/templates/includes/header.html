@@ -2,17 +2,28 @@
 <header>
     <nav id="navbar">
         <div class="container">
-        <a href="{% url 'homePage' %}">
-            <img style="margin-top: 1%" src="{% static 'img/logo.png' %}" width="20%">
-        </a>
+            <!-- Logo -->
+            <a href="{% url 'homePage' %}">
+                <img src="{% static 'img/logo.png' %}" width="210px" style="margin-top: 1%;" alt="Logo">
+            </a>
+            <!-- Navigation Links -->
             <ul>
-                <li><a  href="{% url 'restaurantHomePage' %}">Restaurant</a></li>
+                <li><a href="{% url 'restaurantHomePage' %}">Restaurant</a></li>
                 <li><a href="{% url 'aboutUs' %}">About</a></li>
                 <li><a href="{% url 'contactUs' %}">Contact</a></li>
+
+                <!-- Conditional Rendering for Authenticated User -->
                 {% if user.is_authenticated %}
-                        <li><a href="">{{user}}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown_button">{{ user }}</a>
+                    <div class="dropdown-content">
+                         <button onclick="location.href=''">Logout</button>
+                    </div>
+                </li>
                 {% else %}
-                    <li><a href="{% url 'login_in' %}">Profile</a></li>
+                <li>
+                    <a href="{% url 'login_in' %}">Profile</a>
+                </li>
                 {% endif %}
             </ul>
         </div>

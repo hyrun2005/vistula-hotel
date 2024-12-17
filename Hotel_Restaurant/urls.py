@@ -7,5 +7,8 @@ urlpatterns = [
     path('', include('main.urls')),
     path('acc/', include('accounts.urls')),
     path('payments/', include('payments.urls')),
-    path('restaurant/', include('restaurant.urls'))
+    path('restaurant/', include('restaurant.urls')),
+    path('rooms/', include('hotel_rooms.urls'))
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
