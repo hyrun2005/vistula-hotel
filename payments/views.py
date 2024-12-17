@@ -5,17 +5,20 @@ from cloudipsp import Api, Checkout
 from django.views.decorators.csrf import csrf_exempt
 import logging
 import os
+from restaurant.views import get_or_create_basket
 
 
 # Set up logging
 logger = logging.getLogger(__name__)
 
 # Mock function to get or create a basket (replace with your implementation)
-def get_or_create_basket(request):
+def get_or_createBasket(request):
+    basket = get_or_create_basket(request)
+
     # Example implementation (replace with your logic)
     class Basket:
         def total_price(self):
-            return 53.99  # Replace with the actual calculation logic
+            return basket.total_price()  # Replace with the actual calculation logic
     return Basket()
 
 @csrf_exempt

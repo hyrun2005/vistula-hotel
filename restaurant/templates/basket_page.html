@@ -15,14 +15,17 @@
         border-radius: 10px;
         background-color: #ffffff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .basket-header {
         text-align: center;
-        font-size: 1.8rem;
-        font-weight: bold;
         margin-bottom: 20px;
         color: #333;
+        margin-top: 20px;
     }
 
     .basket-list {
@@ -40,15 +43,19 @@
     }
 
     .item-name {
+        flex: 5;
         font-weight: 600;
         color: #555;
     }
 
     .item-price {
+        flex: 5;
         color: #888;
     }
 
     .delete-form {
+
+        flex: 1;
         margin: 0;
     }
 
@@ -86,8 +93,8 @@
     }
 
     .proceed-button {
-        background-color: #28a745;
-    color: #fff;
+        background-color: #f7c08a;
+    color: #333;
     border: none;
     padding: 12px 25px;
     font-size: 18px;
@@ -99,7 +106,7 @@
     }
 
     .proceed-button:hover {
-         background-color: #218838;
+         background-color: #f7c08a;
     transform: scale(1.05);
     }
 
