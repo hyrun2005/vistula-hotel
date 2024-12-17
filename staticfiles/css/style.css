@@ -494,6 +494,7 @@ font-size: 60px;
 /* Features Styling */
 
 .box {
+
     float: left;
     width: 33.3%;
     padding: 50px;
@@ -589,4 +590,5 @@ font-size: 60px;
     color: #fff;
     padding: 20px;
 }
+
 
