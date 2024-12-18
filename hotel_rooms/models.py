@@ -29,19 +29,24 @@ class RoomPhoto(models.Model):
     def __str__(self):
         return f"Photo for {self.room.room_type} - Room {self.room.number}"
 
-
-
 # Booking model to manage user bookings
 class Booking(models.Model):
+    STATUS_CHOICES = [
+        ('PENDING', 'Pending'),
+        ('CONFIRMED', 'Confirmed'),
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     check_in = models.DateField()
     check_out = models.DateField()
     booking_date = models.DateTimeField(auto_now_add=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
 
     def __str__(self):
-        return f"Booking {self.id} by {self.user.username}"
+        return f"Booking {self.id} - {self.status}"
+
 
     def calculate_total_price(self):
         days = (self.check_out - self.check_in).days

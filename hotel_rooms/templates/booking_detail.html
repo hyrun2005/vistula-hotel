@@ -1,0 +1,88 @@
+{% extends 'includes/master_page_hotel.html' %}
+{% load static %}
+
+{% block title %}
+    Booking Details
+{% endblock %}
+
+{% block content %}
+<style>
+    .booking-details {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-details h1 {
+        color: #333;
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .booking-details p {
+        font-size: 1.2em;
+        color: #555;
+        margin: 10px 0;
+    }
+
+    .booking-details .highlight {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #e91e63;
+    }
+
+    .booking-details a.button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 1.2em;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #f7c08a;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .booking-details a.button:hover {
+        background-color: #e0a76b;
+    }
+
+    .booking-details a.back {
+        background-color: #ddd;
+        color: #333;
+        margin-left: 10px;
+    }
+
+    .booking-details a.back:hover {
+        background-color: #bbb;
+    }
+
+    .button-group {
+        text-align: center;
+    }
+</style>
+
+<div class="booking-details">
+    <h1>Booking Details</h1>
+    <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+    <p><strong>User Email:</strong> {{ user_email }}</p>
+    <p><strong>Room:</strong> {{ booking.room.room_type }} - Room {{ booking.room.number }}</p>
+    <p><strong>Check-in Date:</strong> {{ booking.check_in }}</p>
+    <p><strong>Check-out Date:</strong> {{ booking.check_out }}</p>
+    <p><strong>Total Price:</strong> <span class="highlight">${{ booking.total_price }}</span></p>
+
+    <div class="button-group">
+        {% if not booking.payment %}
+            <a href="{% url 'make_payment' booking.id %}" class="button">Make Payment</a>
+        {% else %}
+            <p><strong>Payment Status:</strong> {{ booking.payment.status }}</p>
+        {% endif %}
+        <a href="{% url 'menu_page_rooms' %}" class="button back">Go back to rooms</a>
+    </div>
+</div>
+{% endblock %}

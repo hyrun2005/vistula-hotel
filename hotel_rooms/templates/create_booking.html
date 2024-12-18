@@ -1,0 +1,102 @@
+{% extends 'includes/master_page_hotel.html' %}
+{% load static %}
+
+{% block title %}
+    Book Room
+{% endblock %}
+
+{% block content %}
+<style>
+    .booking-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-container h1 {
+        color: #333;
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .booking-container p {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .booking-container label {
+        display: block;
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .booking-container input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .booking-container button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .booking-container .confirm {
+        background-color: #f7c08a;
+        color: #fff;
+    }
+
+    .booking-container .confirm:hover {
+        background-color: #e0a76b;
+    }
+
+    .booking-container .cancel {
+        background-color: #ddd;
+        color: #333;
+        margin-left: 10px;
+    }
+
+    .booking-container .cancel:hover {
+        background-color: #bbb;
+    }
+
+    .button-group {
+        text-align: center;
+    }
+</style>
+
+<div class="booking-container">
+    <h1>Book {{ room.room_type }} - Room {{ room.number }}</h1>
+    <p>Price per night: ${{ room.price_per_night }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="check_in">Check-in Date:</label>
+        <input type="date" name="check_in" required>
+
+        <label for="check_out">Check-out Date:</label>
+        <input type="date" name="check_out" required>
+
+        <div class="button-group">
+            <button type="submit" class="confirm">Confirm Booking</button>
+            <a href="{% url 'menu_page_rooms' %}">
+                <button type="button" class="cancel">Cancel</button>
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

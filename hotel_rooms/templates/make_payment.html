@@ -1,0 +1,79 @@
+{% extends 'includes/master_page_hotel.html' %}
+{% load static %}
+
+{% block title %}
+    Make Payment
+{% endblock %}
+
+{% block content %}
+<style>
+    .payment-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .payment-container h1 {
+        color: #333;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .payment-container p {
+        font-size: 1.2em;
+        color: #555;
+        margin: 20px 0;
+    }
+
+    .payment-container .amount {
+        font-size: 1.5em;
+        color: #e91e63;
+        font-weight: bold;
+    }
+
+    .payment-container button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .payment-container .pay-now {
+        background-color: #f7c08a;
+        color: #fff;
+    }
+
+    .payment-container .pay-now:hover {
+        background-color: #e0a76b;
+    }
+
+    .payment-container .cancel {
+        background-color: #ddd;
+        color: #333;
+    }
+
+    .payment-container .cancel:hover {
+        background-color: #bbb;
+    }
+</style>
+
+<div class="payment-container">
+    <h1>Payment for Booking Nr.{{ booking.id }}</h1>
+    <p class="amount">Total Amount: ${{ booking.total_price }}</p>
+    <form method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="pay-now">Pay Now</button>
+    </form>
+    <a href="{% url 'menu_page_rooms' %}">
+        <button type="button" class="cancel">Cancel</button>
+    </a>
+</div>
+{% endblock %}

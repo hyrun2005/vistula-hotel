@@ -1,0 +1,20 @@
+{% load static %}
+<header>
+    <nav id="navbar">
+        <div class="container">
+        <a href="{% url 'restaurantHomePage' %}">
+            <img style="margin-top: 1%" src="{% static 'img/logo.png' %}" alt="logo" width="20%">
+        </a>
+            <ul>
+                <li><a class="current" href="{% url 'homePage' %}">Hotel</a></li>
+                <li><a href="{% url 'aboutUs' %}">About</a></li>
+                <li><a href="{% url 'contactUs' %}">Contact</a></li>
+                {% if user.isauthenticated %}
+                        <li><a href="">{{user}}</a></li>
+                {% else %}
+                    <li><a href="{% url 'login_in' %}">Profile</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>

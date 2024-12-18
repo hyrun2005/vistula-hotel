@@ -40,3 +40,16 @@ def login_in(request):
 def logoutUser(request):
     logout(request)
     return redirect('login_in')
+
+def user_is_authenticated(user):
+    if not user.is_authenticated:
+        return False
+    return True
+
+def custom_login_required(function=None, redirect_field_name=None):
+    def wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, "You need to be logged in to access this page. Please log in or register.")
+            return redirect('login_in')  # Redirect to your login page
+        return function(request, *args, **kwargs)
+    return wrapped_view

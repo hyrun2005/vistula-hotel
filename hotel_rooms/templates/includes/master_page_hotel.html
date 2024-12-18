@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Hotel BT is the most extraordinary hotel in the Boston, MA area.">
+    <meta name="keywords" content="hotel, boston hotel, new england hotel, hotel bt">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="{% static 'css/style_hotel.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="{% static 'css/mobile.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+
+</head>
+<body>
+{% include 'includes/header_hotel.html' %}
+{% block content %}
+{% endblock %}
+{% include 'includes/footer_hotel.html' %}
+</body>
+</html>

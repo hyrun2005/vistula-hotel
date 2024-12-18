@@ -122,6 +122,12 @@ body {
     color: #555;
 }
 
+.price_dish{
+    font-size: x-large;
+    margin: 10px 0;
+    color: #555;
+}
+
 .dish img {
     width: 100%;
     height: auto;
@@ -188,7 +194,7 @@ body {
                     <div class="dish">
                         <h3>{{ dish.name }}</h3>
                         <p>{{ dish.description }}</p>
-                        <p>${{ dish.price }}</p>
+                        <p class="price_dish"><b>${{ dish.price }}</b></p>
                         <div class="photos">
                             {% for photo in dish.photos.all %}
                                 <img src="..{{ photo.photo.url }}" alt="{{ dish.name }}">

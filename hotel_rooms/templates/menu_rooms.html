@@ -119,7 +119,6 @@ body {
             <img src="{% static 'img/logo.png' %}" alt="Default Room">
         {% endif %}
 
-        <!-- Room Details -->
         <div class="room-details">
             <h3>{{ room.room_type }} - Room {{ room.number }}</h3>
             <p>{{ room.description }}</p>
@@ -131,8 +130,8 @@ body {
                     <span class="not-available">Not Available</span>
                 {% endif %}
             </p>
-            <a href="{% url 'add_to_basket' room.id %}">
-                <button>Add to Basket</button>
+            <a href="{% url 'room_detail' room.id %}">
+                <button>View Details</button>
             </a>
         </div>
     </div>

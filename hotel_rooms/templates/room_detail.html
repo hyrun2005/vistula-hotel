@@ -1,0 +1,97 @@
+{% extends 'includes/master_page_hotel.html' %}
+{% load static %}
+
+{% block title %}
+    Room Details
+{% endblock %}
+
+{% block content %}
+<style>
+    .room-details {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .room-details h1 {
+        color: #333;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .room-details p {
+        color: #555;
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+
+    .room-details .price {
+        font-size: 1.5em;
+        color: #e91e63;
+        font-weight: bold;
+    }
+
+    .room-details .availability {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin: 15px 0;
+    }
+
+    .room-details .availability span {
+        color: green;
+    }
+
+    .room-details .availability span.not-available {
+        color: red;
+    }
+
+    .room-details button {
+        display: block;
+        width: 100%;
+        padding: 10px 15px;
+        margin-top: 20px;
+        background-color: #f7c08a;
+        color: #fff;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .room-details button:hover {
+        background-color: #e0a76b;
+    }
+
+    .room-details p.not-available-message {
+        color: #555;
+        font-size: 1.2em;
+        text-align: center;
+    }
+</style>
+
+<div class="room-details">
+    <h1>{{ room.room_type }} - Room {{ room.number }}</h1>
+    <p>{{ room.description }}</p>
+    <p class="price">Price per night: ${{ room.price_per_night }}</p>
+    <p class="availability">
+        Availability:
+        {% if room.is_available %}
+            <span>Available</span>
+        {% else %}
+            <span class="not-available">Not Available</span>
+        {% endif %}
+    </p>
+    {% if room.is_available %}
+        <form method="get" action="{% url 'create_booking' room.id %}">
+            <button type="submit">Book Now</button>
+        </form>
+    {% else %}
+        <p class="not-available-message">This room is not available for booking.</p>
+    {% endif %}
+</div>
+{% endblock %}
