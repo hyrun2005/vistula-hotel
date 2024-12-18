@@ -1,78 +1,216 @@
-{% extends 'includes/master_page_hotel.html' %}
 {% load static %}
 
-{% block title %}
-    Room Details
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details</title>
+    <style>
+/* Reset and Global Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-{% block content %}
-<style>
-    .room-details {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        background: #f8f8f8;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7em;
+}
 
-    .room-details h1 {
-        color: #333;
-        font-size: 2.5em;
-        margin-bottom: 10px;
-        text-align: center;
-    }
+a {
+    color: #333;
+    text-decoration: none;
+}
 
-    .room-details p {
-        color: #555;
-        font-size: 1.2em;
-        margin: 10px 0;
-    }
+h1, h2, h3 {
+    padding-bottom: 20px;
+}
 
-    .room-details .price {
-        font-size: 1.5em;
-        color: #e91e63;
-        font-weight: bold;
-    }
+p {
+    margin: 10px 0;
+}
 
-    .room-details .availability {
-        font-size: 1.2em;
-        font-weight: bold;
-        margin: 15px 0;
-    }
+/* Utility Classes */
+.container {
+    margin: auto;
+    max-width: 1100px;
+    padding: 0 20px;
+}
 
-    .room-details .availability span {
-        color: green;
-    }
+/* Navbar */
+#navbar {
+    background: #333;
+    color: #fff;
+    overflow: auto;
+}
 
-    .room-details .availability span.not-available {
-        color: red;
-    }
+#navbar a {
+    color: #fff;
+    text-decoration: none;
+}
 
-    .room-details button {
-        display: block;
-        width: 100%;
-        padding: 10px 15px;
-        margin-top: 20px;
-        background-color: #f7c08a;
-        color: #fff;
-        font-size: 1.2em;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+#navbar ul {
+    list-style: none;
+    float: right;
+}
 
-    .room-details button:hover {
-        background-color: #e0a76b;
-    }
+#navbar ul li {
+    float: left;
+}
 
-    .room-details p.not-available-message {
-        color: #555;
-        font-size: 1.2em;
-        text-align: center;
-    }
-</style>
+#navbar ul li a {
+    display: block;
+    padding: 20px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+#navbar ul li a:hover,
+#navbar ul li a.current {
+    background: #444;
+    color: #f7c08a;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 150px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content button {
+    display: block;
+    padding: 10px;
+    color: #f7c08a;
+    background-color: #333;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.dropdown-content button:hover {
+    background-color: #444;
+    color: #f7c08a;
+}
+
+/* Footer */
+#main-footer {
+    position: fixed;
+    text-align: center;
+    left: 0;
+    background: #444;
+    color: #fff;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Room Details Styling */
+.room-details {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.room-details h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.room-details p {
+    font-size: 1.2em;
+    color: #555;
+    margin: 10px 0;
+}
+
+.room-details .price {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #e91e63;
+    margin: 20px 0;
+}
+
+.room-details .availability span {
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.room-details .availability span.not-available {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.room-details .availability span.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.room-details button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.room-details button:hover {
+    background-color: #218838;
+}
+
+.room-details .not-available-message {
+    color: #d9534f;
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <nav id="navbar">
+        <div class="container">
+        <a href="{% url 'restaurantHomePage' %}">
+            <img style="margin-top: 1%" src="{% static 'img/logo.png' %}" alt="logo" width="20%">
+        </a>
+            <ul>
+                <li><a class="current" href="{% url 'homePage' %}">Hotel</a></li>
+                <li><a href="{% url 'aboutUs' %}">About</a></li>
+                <li><a href="{% url 'contactUs' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                        <li><a href="">{{user}}</a></li>
+                {% else %}
+                    <li><a href="{% url 'login_in' %}">Profile</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
 
 <div class="room-details">
     <h1>{{ room.room_type }} - Room {{ room.number }}</h1>
@@ -81,7 +219,7 @@
     <p class="availability">
         Availability:
         {% if room.is_available %}
-            <span>Available</span>
+            <span class="available">Available</span>
         {% else %}
             <span class="not-available">Not Available</span>
         {% endif %}
@@ -94,4 +232,11 @@
         <p class="not-available-message">This room is not available for booking.</p>
     {% endif %}
 </div>
-{% endblock %}
+
+<footer id="main-footer">
+       <p>Hotel-Restaurant VISTULA &copy;
+           <script>document.write(new Date().getFullYear());</script>. All Rights Reserved by A.H.</p>
+</footer>
+
+</body>
+</html>
