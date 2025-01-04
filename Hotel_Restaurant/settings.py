@@ -6,7 +6,7 @@ import dj_database_url
 # Explicitly point to your .env file
 SECRET_KEY = 'django-insecure-ut!v4_(#nnsufh&lln-wtn$^i(yxe6hlcx)6yx=ja6(ax)6j07'
 DEBUG = True
-ALLOWED_HOSTS = ['hyrun.pythonanywhere.com']
+ALLOWED_HOSTS = ['hyrun.pythonanywhere.com', '13.60.235.95:8000']
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
