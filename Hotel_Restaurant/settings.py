@@ -4,11 +4,9 @@ from decouple import Config, RepositoryEnv
 import dj_database_url
 
 # Explicitly point to your .env file
-config = Config(RepositoryEnv('access.env'))
-
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
+SECRET_KEY = 'django-insecure-ut!v4_(#nnsufh&lln-wtn$^i(yxe6hlcx)6yx=ja6(ax)6j07'
+DEBUG = True
+ALLOWED_HOSTS = ['hyrun.pythonanywhere.com']
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -75,11 +73,10 @@ WSGI_APPLICATION = 'Hotel_Restaurant.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # MySQL backend
-        'NAME': 'vistula',         # Name of your database
-        'USER': 'root',              # MySQL username
-        'PASSWORD': 'root',          # MySQL password
-        'HOST': 'localhost',                  # MySQL server host (use the IP if hosted remotely)
-        'PORT': '3306',                       # Default MySQL port
+        'NAME': 'hyrun$default',         # Name of your database
+        'USER': 'hyrun',              # MySQL username
+        'PASSWORD': 'dataroot',          # MySQL password
+        'HOST': 'hyrun.mysql.pythonanywhere-services.com'
     }
 }
 
