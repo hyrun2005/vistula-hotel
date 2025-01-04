@@ -1,0 +1,73 @@
+{% extends 'includes/master_page_res.html' %}
+
+{% block title %}
+Payment Successful
+{% endblock %}
+
+{% block content %}
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+        form h1 {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        form p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        form button:active {
+            transform: scale(0.95);
+        }
+        #main-footer {
+            position: fixed;
+            text-align: center;
+            left: 0;
+            background: #444;
+            color: #fff;
+            padding: 20px;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+    <form method="post" action="{% url 'restaurantHomePage' %}">
+        {% csrf_token %}
+        <h1>Payment Successful</h1>
+        <p>Thank you for your payment!</p>
+        <button type="submit">Return to Home</button>
+    </form>
+{% endblock %}

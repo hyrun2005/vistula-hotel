@@ -85,18 +85,9 @@ def order_view(request):
     basket = get_or_create_basket(request)
     total_cost = basket.total_price()
 
-    if request.method == 'POST':
-        basket.clear_basket()
-        messages.success(request, "Order placed successfully!")
-        return render(request, 'order_success.html', {'total_cost': total_cost})
-
     return render(request, 'order_page.html', {
         'basket': basket.basket_items.all(),
         'total_cost': total_cost
     })
-
-
-
-
 
 
