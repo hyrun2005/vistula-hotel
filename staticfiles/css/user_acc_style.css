@@ -10,7 +10,7 @@ html, body {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.7em;
-    overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
     background-color: #333;
 }
 
